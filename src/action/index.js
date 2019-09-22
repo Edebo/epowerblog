@@ -8,7 +8,7 @@ dispatch => {
     return axios
 	.get(`https://epower.ng/wp-json/wp/v2/posts?per_page=6&page=${page}`)
 	.then(response => dispatch(
-		loadPostsSuccess(response.data)))
+		loadPostsSuccess(response.data,page)))
 	.catch(() => dispatch(
 		loadPostsError()));
 };

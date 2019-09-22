@@ -3,7 +3,7 @@ const initialState = {
     isFetching:false,
     error:null,
     success:false,
-    currentPage:1
+    currentPage:0
 }
 
 export default initialState

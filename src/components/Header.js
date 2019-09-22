@@ -7,9 +7,11 @@ const Header = ({title,date}) => {
   }
 
   const postHeader = () => {
-      return <div>
+
+    const dateString = new Date(date).toLocaleDateString('en-US',{ month: 'long',day: 'numeric' ,year: 'numeric' })
+      return <div className="post-header">
                 <h1>{title}</h1>
-                <h3>{`published on ${date}`}</h3>
+                <h3>{`published on ${dateString}`}</h3>
             </div>
   }
   return (

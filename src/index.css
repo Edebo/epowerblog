@@ -6,6 +6,20 @@ body{
   max-width:100%;
 }
 
+.link{
+  color:black;
+ 
+}
+
+.link:hover{
+  text-decoration: none;
+  color:black;
+}
+
+.btn .link{
+  color:white;
+}
+
 .header{
   height:364.61px;
   background-color:rgb(24, 136, 165);
@@ -16,6 +30,14 @@ body{
   font-weight:700;
   font-size: 69px;
   font-family: SegoeUI-Bold, "Segoe UI";
+}
+
+.post-header{
+  text-align: center;
+}
+
+.post-header h3{
+  text-transform: uppercase;
 }
 
 .footer{
@@ -38,7 +60,10 @@ body{
   .card{
     text-align: center;
     color:#000;
-  }
+      box-shadow: 2px 24px 26px 3px rgba(0,0,0,0.16);
+  -webkit-box-shadow: 2px 24px 26px 3px rgba(0,0,0,0.16);
+  -moz-box-shadow: 2px 24px 26px 3px rgba(0,0,0,0.16);
+    }
   .card-text{
     font-size:23px;
   }
@@ -57,12 +82,6 @@ body{
     border-top-left-radius: 36px;
     color:#fff;
 
-  }
-
-  .btn-group{
-    display: flex;
-    justify-content: center;
-    
   }
 
   .img-cont{

@@ -6,6 +6,7 @@ import Loader from './Loader';
 import PostItem from './PostItem';
 class PostList extends Component{
 
+  
 
     componentDidMount(){
           const page = this.props.page
@@ -23,36 +24,22 @@ class PostList extends Component{
             return <Redirect to={`/posts/prev/page/${newPage}`}/>
         }
     }
-   
-    // handleClick= (e)=>{
-    //     let newPage
-    //     console.log(e.target)
-    //       if(e.target.innerHTML==='Previous'){
-    //           console.log('about to do  previous dispatch')
-    //           newPage = this.props.currentPage - 1
-    //           return <Redirect to={`/posts/prev/page/${newPage}`}/>
-          
-    //       } 
-    //       else if(e.target.innerHTML === 'Next'){
-    //         console.log('about to do next dispatch')
-    //         newPage = this.props.currentPage - 1
-    //         return <Redirect to={`/posts/next/page/${newPage}`}/>
-    //       }
-    //       return ''
-    // }
+
     render(){
       
         return(
-            <div className="postlist container">
+            <div className="postlist container-fluid">
                {this.props.loading ? <Loader/>:<div className='row'>
-               {this.props.posts.map(post=>{
+                     
+                    {this.props.posts.map(post=>{
 
-                  return <PostItem key={post.id} post={post}/>
-                })}
+                            return <PostItem key={post.id} post={post}/>
+                  })}
+                      
                </div>}
-               <div className="btn-group my-4">
-                   <button className='btn mx-4 prev' disable={this.currentPage<=1}><Link to={`/posts/prev/page/${this.props.currentPage-1}`}>Previous</Link></button>
-                  <button className="btn mx-4 next"><Link to={`/posts/next/page/${this.props.currentPage + 1}`}>Next</Link></button>
+               <div className="row offset-md-3 my-4">
+                   <button className='btn col-md-3 mx-4 prev' disable={this.currentPage<=1}><Link to={`/posts/prev/page/${this.props.currentPage-1}`} className="link">Previous</Link></button>
+                  <button className="btn col-md-3 mx-4 next"><Link to={`/posts/next/page/${this.props.currentPage + 1}`} className="link">Next</Link></button>
                 </div>
                 {this.handleClick}
             </div>
@@ -68,18 +55,19 @@ function mapDispatchToProps(dispatch) {
 }    
 
 
-function mapStateToProps(state,ownProps) {
-  let page
-    if(ownProps.match.params.page){
-       page=ownProps.match.params.page
-    } 
-    else{
-      page = 1
-    }
-    console.log(page)
+function mapStateToProps(state) {
+  // let page
+  // console.log(ownProps.match)
+  //   if(ownProps.match===undefined){
+  //     page = ownProps.match.params.page
+  //   } 
+  //   else{
+  //     page = 1
+  //   }
+    // console.log(page)
     const {posts,currentPage,error,isFetching} = state.postReducer
     return {
-        page,
+       
         posts,
         currentPage,
         error,

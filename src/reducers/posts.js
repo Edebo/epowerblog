@@ -13,7 +13,7 @@ export const postReducer = (state =initialState,action) =>{
                 return { ...state,
                     isFetching: false,
                     posts:action.payload.posts,
-                    currentPage:action.payload.post
+                    currentPage:action.payload.page
                 };
             default:
                 return state;
