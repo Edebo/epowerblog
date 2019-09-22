@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom'
 import {loadPosts} from '../action'
 import PostItem from './PostItem';
 class PostList extends Component{
@@ -11,21 +12,31 @@ class PostList extends Component{
             console.log(this.props.currentPage)
 
     }
+
+    redirect = (newPage)=>{
+        if(newPage>this.props.currentPage){
+            
+        }
+        else{
+            return <Redirect to={`/posts/prev/page/${newPage}`}/>
+        }
+    }
    
     handleClick= (e)=>{
-
+        let newPage
         console.log(e.target)
-          if(e.target.value==='Previous'){
+          if(e.target.innerHTML==='Previous'){
               console.log('about to do  previous dispatch')
-           this.props.loadPosts(this.props.currentPage - 1)
-           console.log(this.props.posts)
+              newPage = this.props.currentPage - 1
+              return <Redirect to={`/posts/prev/page/${newPage}`}/>
+          
           } 
-          else if(e.target.value === 'Next'){
+          else if(e.target.innerHTML === 'Next'){
             console.log('about to do next dispatch')
-              this.props.loadPosts(this.props.currentPage + 1)
-              console.log(this.props.posts)
+            newPage = this.props.currentPage - 1
+            return <Redirect to={`/posts/next/page/${newPage}`}/>
           }
-          return
+          return ''
     }
     render(){
       
@@ -38,9 +49,10 @@ class PostList extends Component{
                 })}
                </div>
                <div className="btn-group my-4">
-                   <button className='btn btn-lg mx-4' onClick={this.handleClick}>Previous</button>
-                  <button className="btn btn-lg mx-4" onClick={this.handleClick}>Next</button>
+                   <button className='btn mx-4' onClick={this.handleClick}>Previous</button>
+                  <button className="btn mx-4" onClick={this.handleClick}>Next</button>
                 </div>
+                {this.handleClick()}
             </div>
         )
     }

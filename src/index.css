@@ -46,14 +46,17 @@ body{
       font-size:28px;
   }
 
-  button.btn{
+  .btn{
     background-color:rgb(24, 136, 165);
-    height: 71px;
+    height: 72px;
     width:204px;
+    border-radius:36px 36px 36px 36px;
+    color:#fff;
 
   }
 
   .btn-group{
     display: flex;
     justify-content: center;
+    
   }
