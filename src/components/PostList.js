@@ -7,7 +7,6 @@ import PostItem from './PostItem';
 class PostList extends Component{
 
   
-
     componentDidMount(){
           const page = this.props.page
           console.log(page)
@@ -38,8 +37,8 @@ class PostList extends Component{
                       
                </div>}
                <div className="row offset-md-3 my-4">
-                   <button className='btn col-md-3 mx-4 prev' disable={this.currentPage<=1}><Link to={`/posts/prev/page/${this.props.currentPage-1}`} className="link">Previous</Link></button>
-                  <button className="btn col-md-3 mx-4 next"><Link to={`/posts/next/page/${this.props.currentPage + 1}`} className="link">Next</Link></button>
+                   <button className='btn col-md-3 mx-4 my-3 prev' disable={this.currentPage<=1}><Link to={`/posts/prev/page/${this.props.currentPage-1}`} className="link">Previous</Link></button>
+                  <button className="btn col-md-3 mx-4 my-3 next"><Link to={`/posts/next/page/${this.props.currentPage + 1}`} className="link">Next</Link></button>
                 </div>
                 {this.handleClick}
             </div>

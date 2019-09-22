@@ -1,12 +1,14 @@
 import React from 'react'
 import Header from './Header';
+import _ from 'lodash'
 import Footer from './Footer';
 import PostList from './PostList';
 
 const Home = (props) => {
 
  const getPage = ()=>{
-    if(props.match===undefined){
+   console.log(props.match.params)
+    if(_.isEmpty(props.match.params)){
       return 1
     }
     else{
