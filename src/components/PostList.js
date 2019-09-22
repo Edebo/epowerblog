@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
-import {Redirect} from 'react-router-dom'
+import {Redirect,Link} from 'react-router-dom'
 import {loadPosts} from '../action'
 import Loader from './Loader';
 import PostItem from './PostItem';
@@ -8,8 +8,9 @@ class PostList extends Component{
 
 
     componentDidMount(){
-
-            this.props.loadPosts(1)
+          const page = this.props.page? this.props.currentPage : 1
+          console.log(page)
+            this.props.loadPosts(page)
             console.log(this.props.currentPage)
 
     }
@@ -50,8 +51,8 @@ class PostList extends Component{
                 })}
                </div>}
                <div className="btn-group my-4">
-                   <button className='btn mx-4 prev' onClick={this.handleClick}>Previous</button>
-                  <button className="btn mx-4 next" onClick={this.handleClick}>Next</button>
+                   <button className='btn mx-4 prev' disable={this.currentPage<=1}><Link to={`/posts/prev/page/${this.props.currentPage-1}`}>Previous</Link></button>
+                  <button className="btn mx-4 next"><Link to={`/posts/next/page/${this.props.currentPage + 1}`}>Next</Link></button>
                 </div>
                 {this.handleClick}
             </div>
@@ -67,10 +68,13 @@ function mapDispatchToProps(dispatch) {
 }    
 
 
-function mapStateToProps(state) {
-    console.log(state)
+function mapStateToProps(state,ownProps) {
+
+  const page =ownProps.match.params.page
+    
     const {posts,currentPage,error,isFetching} = state.postReducer
     return {
+        page,
         posts,
         currentPage,
         error,
