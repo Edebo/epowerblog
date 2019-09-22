@@ -11,7 +11,10 @@ export const postReducer = (state =initialState,action) =>{
                         isFetching: true, error: false };
             case LOAD_POSTS_SUCCESS:
                 return { ...state,
-                    isFetching: false ,posts:action.posts};
+                    isFetching: false,
+                    posts:action.payload.posts,
+                    currentPage:action.payload.post
+                };
             default:
                 return state;
                 }

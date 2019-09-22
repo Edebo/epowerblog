@@ -8,7 +8,7 @@ class PostList extends Component{
 
 
     componentDidMount(){
-          const page = this.props.page? this.props.currentPage : 1
+          const page = this.props.page
           console.log(page)
             this.props.loadPosts(page)
             console.log(this.props.currentPage)
@@ -24,22 +24,22 @@ class PostList extends Component{
         }
     }
    
-    handleClick= (e)=>{
-        let newPage
-        console.log(e.target)
-          if(e.target.innerHTML==='Previous'){
-              console.log('about to do  previous dispatch')
-              newPage = this.props.currentPage - 1
-              return <Redirect to={`/posts/prev/page/${newPage}`}/>
+    // handleClick= (e)=>{
+    //     let newPage
+    //     console.log(e.target)
+    //       if(e.target.innerHTML==='Previous'){
+    //           console.log('about to do  previous dispatch')
+    //           newPage = this.props.currentPage - 1
+    //           return <Redirect to={`/posts/prev/page/${newPage}`}/>
           
-          } 
-          else if(e.target.innerHTML === 'Next'){
-            console.log('about to do next dispatch')
-            newPage = this.props.currentPage - 1
-            return <Redirect to={`/posts/next/page/${newPage}`}/>
-          }
-          return ''
-    }
+    //       } 
+    //       else if(e.target.innerHTML === 'Next'){
+    //         console.log('about to do next dispatch')
+    //         newPage = this.props.currentPage - 1
+    //         return <Redirect to={`/posts/next/page/${newPage}`}/>
+    //       }
+    //       return ''
+    // }
     render(){
       
         return(
@@ -69,9 +69,14 @@ function mapDispatchToProps(dispatch) {
 
 
 function mapStateToProps(state,ownProps) {
-
-  const page =ownProps.match.params.page
-    
+  let page
+    if(ownProps.match.params.page){
+       page=ownProps.match.params.page
+    } 
+    else{
+      page = 1
+    }
+    console.log(page)
     const {posts,currentPage,error,isFetching} = state.postReducer
     return {
         page,

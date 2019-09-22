@@ -4,9 +4,12 @@ export const LOAD_POSTS_ERROR = 'LOAD_POSTS_ERROR';
 
 export const loadPostsStart =() => ({
 	type: LOAD_POSTS_START });
-export const loadPostsSuccess = posts => ({
+export const loadPostsSuccess = (posts,page) => ({
 	type: LOAD_POSTS_SUCCESS,
-	posts
+	payload:{
+		posts,
+		page
+	}
 });
 export const loadPostsError =() => ({
     type: LOAD_POSTS_ERROR });
