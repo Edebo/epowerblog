@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom'
 import {loadPosts} from '../action'
+import Loader from './Loader';
 import PostItem from './PostItem';
 class PostList extends Component{
 
@@ -42,17 +43,17 @@ class PostList extends Component{
       
         return(
             <div className="postlist container">
-               <div className='row'>
+               {this.props.loading ? <Loader/>:<div className='row'>
                {this.props.posts.map(post=>{
 
                   return <PostItem key={post.id} post={post}/>
                 })}
-               </div>
+               </div>}
                <div className="btn-group my-4">
-                   <button className='btn mx-4' onClick={this.handleClick}>Previous</button>
-                  <button className="btn mx-4" onClick={this.handleClick}>Next</button>
+                   <button className='btn mx-4 prev' onClick={this.handleClick}>Previous</button>
+                  <button className="btn mx-4 next" onClick={this.handleClick}>Next</button>
                 </div>
-                {this.handleClick()}
+                {this.handleClick}
             </div>
         )
     }
@@ -63,15 +64,18 @@ function mapDispatchToProps(dispatch) {
     return {
       loadPosts:(page)=> dispatch(loadPosts(page))
     }
-}
+}    
+
 
 function mapStateToProps(state) {
     console.log(state)
+    const {posts,currentPage,error,isFetching} = state.postReducer
     return {
-        posts:state.postReducer.posts,
-        currentPage:state.postReducer.currentPage
+        posts,
+        currentPage,
+        error,
+        loading:isFetching
     }
-    
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(PostList)
