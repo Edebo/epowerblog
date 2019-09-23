@@ -12,8 +12,14 @@ class PostList extends Component{
           console.log(page)
             this.props.loadPosts(page)
             console.log(this.props.currentPage)
-
     }
+   
+    componentDidUpdate(prevProps) {
+        
+        if (this.props.page !== prevProps.page) {
+          console.log(prevProps.page)
+        }
+      }
 
     redirect = (newPage)=>{
         if(newPage>this.props.currentPage){
