@@ -7,7 +7,7 @@ import PostList from './PostList';
 const Home = (props) => {
 
  const getPage = ()=>{
-   console.log(props.match.params)
+   
     if(_.isEmpty(props.match.params)){
       return 1
     }
